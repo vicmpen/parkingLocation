@@ -9,24 +9,14 @@ import {
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import parkingLocations from "../res/parkingLocations.json";
 
+import ParkingLocationCell from "../components/ParkingLocationCell";
+console.log(ParkingLocationCell);
 import { connect } from "react-redux";
 
 class Location extends React.Component {
   renderItem = item => {
-    const {
-      index,
-      item: { lat, lang }
-    } = item;
-
     return (
-      <TouchableOpacity
-        style={styles.cell}
-        onPress={() => this.locationPressed(item)}
-      >
-        <Text style={{ fontSize: 24 }}>
-          {lat} / {lang}
-        </Text>
-      </TouchableOpacity>
+      <ParkingLocationCell location={item} onPressCB={this.locationPressed} />
     );
   };
 
@@ -52,10 +42,6 @@ const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
     flexDirection: "column"
-  },
-  cell: {
-    flex: 1,
-    alignItems: "center"
   }
 });
 
